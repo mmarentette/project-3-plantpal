@@ -17,9 +17,9 @@ async function signup(req, res) {
   console.log('hitting signup router');
   console.log(req.body, '<- contents of the form', req.file, '<- this is req.file');
 
-  if (!req.file) return res.status(400).json({ error: 'Please submit a photo' })
+  if (!req.file) return res.status(400).json({ error: 'Please submit a photo' });
 
-  const filePath = `plantpal/${uuidv4()}-${req.file.originalname}`
+  const filePath = `plantpal/${uuidv4()}-${req.file.originalname};` // uuidv4 adds a random id before the file name in case two users upload files with the same name (or same user uploading multiple photos with same file name)
   const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer }
   console.log(params, '<--- params');
   s3.upload(params, async function (err, data) {

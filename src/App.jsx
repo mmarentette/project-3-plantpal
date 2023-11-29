@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import FeedPage from './pages/FeedPage/FeedPage';
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<h1>Home Pageeeeeeeeeee</h1>} />
+      <Route path="/" element={<FeedPage />} />
       <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
       <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
     </Routes>
