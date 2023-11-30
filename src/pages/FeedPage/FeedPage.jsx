@@ -10,10 +10,13 @@ import { Grid } from 'semantic-ui-react';
 
 export default function FeedPage() {
     const [plants, setPlants] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         async function getPlants() {
             try {
+                setLoading(true);
                 const response = await fetch('/api/plants', {
                     method: 'GET',
                     headers: {
@@ -21,11 +24,15 @@ export default function FeedPage() {
                     }
                 })
 
+                if(!response.ok) setErrorMessage('Could not retrieve plants');
                 const data = await response.json();
                 console.log(data, '<--- data from index fetch');
+
+                setLoading(false);
                 setPlants(data.plants);
             } catch (error) {
                 console.log(error);
+                setErrorMessage('Could not retrieve plants');
             }
         }
 
@@ -34,6 +41,7 @@ export default function FeedPage() {
 
     async function addPlant(formData) {
         try {
+            setLoading(true);
             const response = await fetch('/api/plants', {
                 method: 'POST',
                 headers: {
@@ -42,10 +50,12 @@ export default function FeedPage() {
                 body: formData,
             })
 
+            setErrorMessage('Could not add plant');
             const data = await response.json();
             console.log(data, "<- response data from the server")
 
             // Now, update state!
+            setLoading(false);
             setPlants([
                 data.plant,
                 ...plants
@@ -53,7 +63,26 @@ export default function FeedPage() {
 
         } catch (error) {
             console.log(error);
+            setErrorMessage('Could not add plant');
         }
+    }
+
+    if (errorMessage) {
+        return (
+            <>
+                <PageHeader />
+                <h1>{errorMessage}</h1>
+            </>
+        )
+    }
+
+    if (loading) {
+        return (
+            <>
+                <PageHeader />
+                <h1>Loading...</h1>
+            </>
+        )
     }
 
     return (
