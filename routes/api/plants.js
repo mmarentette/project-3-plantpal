@@ -9,6 +9,7 @@ const upload = multer();
 // All routes start with /api/plants
 router.post('/', upload.single('photo'), plantsCtrl.create);
 router.get('/', plantsCtrl.index);
+router.get('/:plantId', plantsCtrl.show);
 router.delete('/:plantId', plantsCtrl.deletePlant);
 
 /*---------- Protected Routes ----------*/

@@ -8,6 +8,7 @@ const BUCKET_NAME = process.env.BUCKET_NAME
 module.exports = {
     create,
     index,
+    show,
     deletePlant
 };
 
@@ -55,6 +56,19 @@ async function index(req, res) {
     } catch (error) {
         console.log(error, '<--- Error reading all plants (controller)');
         res.json({error: 'Error reading all plants'});
+    }
+}
+
+async function show(req, res) {
+    console.log(req.params.plantId, '<--- req.params.plantId');
+    try {
+        const plantDoc = await Plant.findById(req.params.plantId);
+        if (!plantDoc) return res.status(404).json({error: 'Plant not found'});
+        console.log(plantDoc, '<---- plant doc');
+        res.status(200).json({plant: plantDoc});
+    } catch (error) {
+        console.log(error, '<--- Error displaying plant details (controller)');
+        res.json({error: 'Error displaying plant details'});
     }
 }
 
