@@ -31,24 +31,28 @@ function create(req, res) {
                 photoUrl: data.Location // data.Location is where the file is stored in AWS
             })
 
+            await plantDoc.populate('user'); // Question: Why don't I need .exec() here?
+
             // Respond to client
             // Status 201 means a resource was created
-            res.status(201).json({ plant: plantDoc })
+            res.status(201).json({plant: plantDoc})
 
         } catch (error) {
-            console.log(error, '<--- error creating a plant');
-            res.json({ error: 'Error creating a plant' })
+            console.log(error, '<--- Error creating a plant');
+            res.json({error: 'Error creating a plant'});
 
         }
 
     })
-    // res.json({ data: 'hitting create' }); // Before I removed this line of code, I was getting an Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client - is it because we already responded to the client in the try/catch block and we can only respond to the client once?
+    // res.json({ data: 'hitting create' }); // Question: Before I removed this line of code, I was getting an Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client - is it because we already responded to the client in the try/catch block and we can only respond to the client once?
 }
 
 async function index(req, res) {
     try {
-        const plants = await Plant.find({}).populate("user");
+        const plants = await Plant.find({}).populate("user").exec();
+        res.status(200).json({plants});
     } catch (error) {
-        console.log(error);
+        console.log(error, '<--- Error reading all plants');
+        res.json({error: 'Error reading all plants'});
     }
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import PageHeader from '../../components/Header/Header';
 import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
@@ -11,27 +11,48 @@ import { Grid } from 'semantic-ui-react';
 export default function FeedPage() {
     const [plants, setPlants] = useState([]);
 
+    useEffect(() => {
+        async function getPlants() {
+            try {
+                const response = await fetch('/api/plants', {
+                    method: 'GET',
+                    headers: {
+                        Authorization: "Bearer " + tokenService.getToken()
+                    }
+                })
+
+                const data = await response.json();
+                console.log(data, '<--- data from index fetch');
+                setPlants(data.plants);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        getPlants();
+    }, [])
+
     async function addPlant(formData) {
         try {
             const response = await fetch('/api/plants', {
                 method: 'POST',
-                body: formData,
                 headers: {
                     Authorization: "Bearer " + tokenService.getToken()
-                }
+                },
+                body: formData,
             })
 
             const data = await response.json();
             console.log(data, "<- response data from the server")
 
             // Now, update state!
-            setPlants( [
+            setPlants([
                 data.plant,
                 ...plants
             ])
-            
+
         } catch (error) {
-            console.log(error);  
+            console.log(error);
         }
     }
 
@@ -43,13 +64,13 @@ export default function FeedPage() {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{maxWidth: 450}}>
+                <Grid.Column style={{ maxWidth: 450 }}>
                     <AddPlantForm addPlant={addPlant} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{maxWidth: 450}}>
-                    <PlantFeed />
+                <Grid.Column style={{ maxWidth: 900 }}>
+                    <PlantFeed plants={plants} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>
