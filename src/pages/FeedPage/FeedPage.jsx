@@ -50,7 +50,7 @@ export default function FeedPage() {
                 body: formData,
             })
 
-            setErrorMessage('Could not add plant');
+            if(!response.ok) setErrorMessage('Could not add plant');
             const data = await response.json();
             console.log(data, "<- response data from the server")
 

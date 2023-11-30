@@ -21,12 +21,8 @@ export default function AddPlantForm({ addPlant }) {
         formData.append('photo', photo);
 
         addPlant(formData);
-
-        try {
-            
-        } catch (error) {
-            console.log(error);
-        }
+        setCommonName('');
+        setPhoto('');
     }
 
     return (
