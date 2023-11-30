@@ -1,8 +1,16 @@
 import { Card, Icon, Image } from 'semantic-ui-react';
 
-export default function PlantCard({ plant, isProfile }) {
+export default function PlantCard({ plant, isProfile, deletePlant }) {
+    function handleClick() {
+        deletePlant(plant._id);
+    }
+
     return (
         <Card>
+            <Card.Content onClick={handleClick}>
+                    <Icon name="delete" floated="right" size="small" color="grey" />
+                    Delete
+                </Card.Content>
             {isProfile ? null : (
                 <Card.Content textAlign="left">
                     <Image

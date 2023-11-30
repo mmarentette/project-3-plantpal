@@ -19,36 +19,61 @@ export default function ProfilePage() {
 
     useEffect(() => {
         console.log(username);
+        getProfile();
+    }, [username]); // Any time params changes, run useEffect
 
-        async function getProfile() {
-            try {
-                setLoading(true);
-                const response = await fetch(`/api/users/${username}`, {
-                method: 'GET',
+    async function getProfile() {
+        try {
+            setLoading(true);
+            const response = await fetch(`/api/users/${username}`, {
+            method: 'GET',
+            headers: {
+                Authorization: "Bearer " + tokenService.getToken()
+            }
+        })
+        // response has a built-in ok property
+        // .ok checks to see if status is in the 200s (everything went okay); if not, set an error message
+        if(!response.ok) setErrorMessage('Profile does not exist');
+
+        const data = await response.json();
+        console.log(data);
+
+        setLoading(false);
+        setProfileUser(data.user);
+        setPlants(data.data);
+            
+        } catch (error) {
+            console.log(error);
+            setErrorMessage('Profile does not exist'); // This is what we tell the client, even though this may not be the issue - could be an error on the server.
+        }
+
+    }
+
+    async function deletePlant(plantId) {
+        try {
+            setLoading(true);
+            const response = await fetch(`/api/plants/${plantId}`, {
+                method: 'DELETE',
                 headers: {
                     Authorization: "Bearer " + tokenService.getToken()
                 }
-            })
-            // response has a built-in ok property
-            // .ok checks to see if status is in the 200s (everything went okay); if not, set an error message
-            if(!response.ok) setErrorMessage('Profile does not exist');
 
+            })
+
+            if(!response.ok) setErrorMessage('Could not delete plant');
             const data = await response.json();
-            console.log(data);
+            console.log(data, '<- response from the server')
 
             setLoading(false);
-            setProfileUser(data.user);
-            setPlants(data.data);
-                
-            } catch (error) {
-                console.log(error);
-                setErrorMessage('Profile does not exist'); // This is what we tell the client, even though this may not be the issue - could be an error on the server.
-            }
-
+            // Get the updated plants from the server and update plants state
+            getProfile();
+            
+        } catch (error) {
+            console.log(error);
+            setErrorMessage('Could not delete plant');
+            
         }
-
-        getProfile();
-    }, [username]); // Any time params changes, run useEffect
+    }
 
     if (errorMessage) {
         return (
@@ -82,7 +107,7 @@ export default function ProfilePage() {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column style={{ maxWidth: 900 }}>
-                    <PlantFeed plants={plants} isProfile={true} itemsPerRow={3} />
+                    <PlantFeed plants={plants} isProfile={true} itemsPerRow={3} deletePlant={deletePlant} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>

@@ -7,7 +7,8 @@ const BUCKET_NAME = process.env.BUCKET_NAME
 
 module.exports = {
     create,
-    index
+    index,
+    deletePlant
 };
 
 function create(req, res) {
@@ -38,7 +39,7 @@ function create(req, res) {
             res.status(201).json({plant: plantDoc})
 
         } catch (error) {
-            console.log(error, '<--- Error creating a plant');
+            console.log(error, '<--- Error creating a plant (controller)');
             res.json({error: 'Error creating a plant'});
 
         }
@@ -52,7 +53,18 @@ async function index(req, res) {
         const plants = await Plant.find({}).populate("user").exec();
         res.status(200).json({plants});
     } catch (error) {
-        console.log(error, '<--- Error reading all plants');
+        console.log(error, '<--- Error reading all plants (controller)');
         res.json({error: 'Error reading all plants'});
+    }
+}
+
+async function deletePlant(req, res) {
+    try {
+        await Plant.findOneAndDelete({_id: req.params.plantId, user: req.user._id})
+        res.json({data: 'Plant removed'});
+    } catch (error) {
+        console.log(error, '<- Error deleting a plant (controller)');
+        res.json({error: 'Error deleting a plant'})
+        
     }
 }
