@@ -69,8 +69,8 @@ export default function FeedPage() {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 900 }}>
-                    <PlantFeed plants={plants} />
+                <Grid.Column style={{ maxWidth: 450 }}>
+                    <PlantFeed plants={plants} isProfile={false} itemsPerRow={1} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>

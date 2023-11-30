@@ -3,8 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import FeedPage from './pages/FeedPage/FeedPage';
-import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import userService from "./utils/userService";
 
@@ -18,8 +19,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<FeedPage />} />
-      <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
       <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
+      <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
+      <Route path="/:username" element={<ProfilePage />} />
+      
+
     </Routes>
   );
 }
