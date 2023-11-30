@@ -9,7 +9,7 @@ export default function PlantCard({ plant, isProfile }) {
                         size="large"
                         floated="right"
                         avatar
-                        src={plant.user.photoUrl}
+                        src={plant.user.photoUrl ? plant.user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"}
                     />
                     <Card.Header floated="left">{plant.user.username}</Card.Header>
                 </Card.Content>
