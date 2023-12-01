@@ -39,7 +39,7 @@ export default function LoginPage({ handleSignupOrLogin }) {
       navigate('/');
     } catch (error) {
       console.log(error);
-      setError('Check terminal and console')
+      setError('Wrong email or password')
     }
 
   }

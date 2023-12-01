@@ -5,6 +5,7 @@ import "./App.css";
 import userService from "./utils/userService";
 import { UserProvider } from './contexts/UserContext';
 
+import Layout from './pages/Layout/Layout';
 import FeedPage from './pages/FeedPage/FeedPage';
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -34,14 +35,23 @@ export default function App() {
   }
 
   return (
-    <UserProvider loggedUser={user} handleLogout={logout} >
-      <Routes>
-        <Route path="/" element={<FeedPage />} />
+    // <UserProvider loggedUser={user} handleLogout={logout} >
+    //   <Routes>
+    //     <Route path="/" element={<FeedPage />} />
+    //     <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
+    //     <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
+    //     <Route path="/plants/:plantId" element={<PlantShowPage />} />
+    //     <Route path="/:username" element={<ProfilePage />} />
+    //   </Routes>
+    // </UserProvider>
+    <Routes>
+      <Route path="/" element={<Layout loggedUser={user} handleLogout={logout} />}>
+        <Route index element={<FeedPage />} />
         <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
         <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
         <Route path="/plants/:plantId" element={<PlantShowPage />} />
         <Route path="/:username" element={<ProfilePage />} />
-      </Routes>
-    </UserProvider>
+      </Route>
+    </Routes>
   );
 }

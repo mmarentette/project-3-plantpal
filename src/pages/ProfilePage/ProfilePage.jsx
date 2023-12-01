@@ -77,29 +77,18 @@ export default function ProfilePage() {
 
     if (errorMessage) {
         return (
-            <>
-                <PageHeader />
-                <h1>{errorMessage}</h1>
-            </>
+            <h1>{errorMessage}</h1>
         )
     }
 
     if (loading) {
         return (
-            <>
-                <PageHeader />
-                <LoadingNotice />
-            </>
+            <LoadingNotice />
         )
     }
 
     return (
         <Grid centered>
-            <Grid.Row>
-                <Grid.Column>
-                    <PageHeader />
-                </Grid.Column>
-            </Grid.Row>
             <Grid.Row>
                 <Grid.Column style={{ maxWidth: "60vw" }}>
                     <ProfileBio profileUser={profileUser} />
