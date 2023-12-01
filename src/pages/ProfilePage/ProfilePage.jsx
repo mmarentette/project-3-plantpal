@@ -101,12 +101,12 @@ export default function ProfilePage() {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid.Column style={{ maxWidth: "60vw" }}>
                     <ProfileBio profileUser={profileUser} />
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 900 }}>
+                <Grid.Column style={{ maxWidth: "90vw" }}>
                     <PlantFeed plants={plants} isProfile={true} itemsPerRow={3} deletePlant={deletePlant} />
                 </Grid.Column>
             </Grid.Row>

@@ -61,7 +61,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
 
     return (
         <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-            <Grid.Column style={{ maxWidth: 450 }}>
+            <Grid.Column style={{ maxWidth: "50vw" }}>
                 <Header as="h2" color="green" textAlign="center">
                     <Image src="https://i.imgur.com/CPGiTkJ.jpg" /> Sign Up
                 </Header>
