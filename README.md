@@ -2,16 +2,17 @@
 
 PlantPal is designed to help your house plant pets thrive. Start keeping track of all your house plants on your profile page by uploading a photo and inputting the common name. Click a plant card to view details and care instructions. Never forget to water your plant pals again!
 
+
 # Screenshots
 
 Home page (index of plants):
-<img src="updateLink">
+<img src="https://i.imgur.com/Iv0V6ag.png">
 
 Profile page (index of profile user's plants):
-<img src="updateLink">
+<img src="https://i.imgur.com/jW7NViE.png">
 
 Show page for plant details:
-<img src="updateLink">
+<img src="https://i.imgur.com/LJBHs71.png">
 
 
 # Technologies Used
