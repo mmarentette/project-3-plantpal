@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -48,35 +48,38 @@ export default function LoginPage({ handleSignupOrLogin }) {
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
-        <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="green" textAlign="center">
-            <Image src="https://i.imgur.com/CPGiTkJ.jpg" /> Log In
-            </Header>
-            <Form autoComplete="off" onSubmit={handleSubmit}>
-            <Segment stacked>
-                <Form.Input
-                type="email"
-                name="email"
-                placeholder="email"
-                value={state.email}
-                onChange={handleChange}
-                required
-                />
-                <Form.Input
-                name="password"
-                type="password"
-                placeholder="password"
-                value={state.password}
-                onChange={handleChange}
-                required
-                />
-                <Button type="submit" className="btn">
-                Log In
-                </Button>
-            </Segment>
-            {error ? <ErrorMessage error={error} /> : null}
-            </Form>
-        </Grid.Column>
-        </Grid>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="green" textAlign="center">
+          <Image src="https://i.imgur.com/CPGiTkJ.jpg" /> Log In
+        </Header>
+        <Form autoComplete="off" onSubmit={handleSubmit}>
+          <Segment stacked>
+            <Form.Input
+              type="email"
+              name="email"
+              placeholder="email"
+              value={state.email}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="password"
+              type="password"
+              placeholder="password"
+              value={state.password}
+              onChange={handleChange}
+              required
+            />
+            <Button type="submit" className="btn">
+              Log In
+            </Button>
+          </Segment>
+          {error ? <ErrorMessage error={error} /> : null}
+        </Form>
+        <Segment>
+          Don't have an account? <Link to="/signup"><strong>Sign up</strong></Link> instead
+        </Segment>
+      </Grid.Column>
+    </Grid>
   );
 }

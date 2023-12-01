@@ -9,8 +9,9 @@ import PlantShowPage from './pages/PlantShowPage/PlantShowPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 import userService from "./utils/userService";
+import { UserProvider } from './contexts/UserContext';
 
-function App() {
+export default function App() {
   const [user, setUser] = useState(userService.getUser());
 
   function handleSignupOrLogin() {
@@ -33,14 +34,14 @@ function App() {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<FeedPage />} />
-      <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
-      <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
-      <Route path="/plants/:plantId" element={<PlantShowPage />} />
-      <Route path="/:username" element={<ProfilePage />} />
-    </Routes>
+    <UserProvider loggedUser={user} handleLogout={logout} >
+      <Routes>
+        <Route path="/" element={<FeedPage />} />
+        <Route path="/signup" element={<SignupPage handleSignupOrLogin={handleSignupOrLogin} />} />
+        <Route path="/login" element={<LoginPage handleSignupOrLogin={handleSignupOrLogin} />} />
+        <Route path="/plants/:plantId" element={<PlantShowPage />} />
+        <Route path="/:username" element={<ProfilePage />} />
+      </Routes>
+    </UserProvider>
   );
 }
-
-export default App;
