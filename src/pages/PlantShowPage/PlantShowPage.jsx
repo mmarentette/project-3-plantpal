@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 import { Grid, Segment, Image } from 'semantic-ui-react';
 
 import tokenService from '../../utils/tokenService';
+
 import PageHeader from '../../components/Header/Header';
 
 export default function PlantShowPage() {
+
+    const { plantId } = useParams();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [plant, setPlant] = useState({});
-
-    const { plantId } = useParams();
-    console.log(plantId);
 
     useEffect(() => {
         getPlant();

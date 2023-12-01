@@ -1,9 +1,9 @@
 import { useState } from 'react';
-
 import { Segment, Form, Button } from 'semantic-ui-react';
 
 export default function AddPlantForm({ addPlant }) {
-    const [commonName, setCommonName ] = useState('');
+    
+    const [commonName, setCommonName] = useState('');
     const [photo, setPhoto] = useState('');
 
     function handleChange(e) {

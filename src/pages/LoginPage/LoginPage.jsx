@@ -11,19 +11,18 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-import './LoginPage.css';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
 
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function LoginPage({ handleSignupOrLogin }) {
+
+  const navigate = useNavigate();
   const [state, setState] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
-
-  const navigate = useNavigate();
 
   function handleChange(e) {
     setState({
@@ -31,7 +30,6 @@ export default function LoginPage({ handleSignupOrLogin }) {
       [e.target.name]: e.target.value
     })
   }
-  // Question for Jim/Megan: Why was user-entered text able to be updated on form before I added code in this function, and when state was initialized to empty string instead of object with keys and empty string?
 
   async function handleSubmit(e) {
     e.preventDefault();

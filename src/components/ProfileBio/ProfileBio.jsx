@@ -14,7 +14,7 @@ export default function ProfileBio({ profileUser }) {
                     <Segment vertical>
                         <span>{profileUser.bio}</span>
                     </Segment>
-                 </Grid.Column>
+                </Grid.Column>
             </Grid.Row>
         </Grid>
     )

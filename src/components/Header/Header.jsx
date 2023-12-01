@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Icon, Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Icon, Menu, Image } from 'semantic-ui-react';
+
 import { useUserContext } from '../../contexts/UserContext';
 
 export default function PageHeader() {
-    const {loggedUser, handleLogout} = useUserContext();
-    console.log(loggedUser, handleLogout);
+    
+    const { loggedUser, handleLogout } = useUserContext();
     const [activeItem, setActiveItem] = useState('home');
 
     function handleItemClick(e) {

@@ -1,5 +1,5 @@
-import { Card, Icon, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { Card, Icon, Image } from 'semantic-ui-react';
 
 import { useUserContext } from '../../contexts/UserContext';
 

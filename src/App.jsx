@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 
+import userService from "./utils/userService";
+import { UserProvider } from './contexts/UserContext';
+
 import FeedPage from './pages/FeedPage/FeedPage';
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PlantShowPage from './pages/PlantShowPage/PlantShowPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-
-import userService from "./utils/userService";
-import { UserProvider } from './contexts/UserContext';
 
 export default function App() {
   const [user, setUser] = useState(userService.getUser());

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// One : many relationship
 // One user has many plants
 // A plant belongs to a user
 const plantSchema = new mongoose.Schema(
@@ -11,6 +12,6 @@ const plantSchema = new mongoose.Schema(
     {
         timestamps: true
     }
-)
+);
 
 module.exports = mongoose.model("Plant", plantSchema);

@@ -10,12 +10,12 @@ import PlantFeed from '../../components/PlantFeed/PlantFeed';
 
 export default function ProfilePage() {
 
+    // Use useParams to grab username from the browser's URL. The key of username is defined on the client-side routing - i.e. App route ('/:username')
+    const { username } = useParams(); // useParams is an object; username is a key on this object. The curly braces indicates destructuring assignment - we are unpacking the value from this object into its own variable... just like when we destructure props (which is also an object).
     const [profileUser, setProfileUser] = useState({});
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    // Use useParams to grab username from the browser's URL. The key of username is defined on the client-side routing - i.e. App route ('/:username')
-    const {username} = useParams(); // useParams is an object; username is a key on this object. The curly braces indicates destructuring assignment - we are unpacking the value from this object into its own variable... just like when we destructure props (which is also an object).
 
     useEffect(() => {
         console.log(username);
@@ -34,9 +34,8 @@ export default function ProfilePage() {
         // response has a built-in ok property
         // .ok checks to see if status is in the 200s (everything went okay); if not, set an error message
         if(!response.ok) setErrorMessage('Profile does not exist');
-
         const data = await response.json();
-        console.log(data);
+        console.log(data, '<--- response from getProfile fetch call');
 
         setLoading(false);
         setProfileUser(data.user);
@@ -62,7 +61,7 @@ export default function ProfilePage() {
 
             if(!response.ok) setErrorMessage('Could not delete plant');
             const data = await response.json();
-            console.log(data, '<- response from the server')
+            console.log(data, '<- response from deletePlant fetch call')
 
             setLoading(false);
             // Get the updated plants from the server and update plants state

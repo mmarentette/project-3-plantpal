@@ -7,14 +7,15 @@ function signup(user) {
     method: 'POST',
     // headers: new Headers({'Content-Type': 'application/json'}),  // Since we are sending form data, we can remove the headers
     body: user // no need to stringify the user data since we are sending over form data instead of JSON
+
   })
-  .then(res => {
-    if (res.ok) return res.json();
-    // Probably a duplicate email
-    throw new Error('Email already taken!');
-  })
-  // Parameter destructuring!
-  .then(({token}) => tokenService.setToken(token));
+    .then(res => {
+      if (res.ok) return res.json();
+      // Probably a duplicate email
+      throw new Error('Email already taken!');
+    })
+    // Parameter destructuring!
+    .then(({ token }) => tokenService.setToken(token));
   // The above could have been written as
   //.then((token) => token.token);
 }
@@ -30,19 +31,19 @@ function logout() {
 function login(creds) {
   return fetch(BASE_URL + 'login', {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),
+    headers: new Headers({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(creds)
   })
-  .then(res => {
-    // Valid login if we have a status of 2xx (res.ok)
-    if (res.ok) return res.json();
-    throw new Error('Bad Credentials!');
-  })
-  .then(({token}) => tokenService.setToken(token));
+    .then(res => {
+      // Valid login if we have a status of 2xx (res.ok)
+      if (res.ok) return res.json();
+      throw new Error('Bad Credentials!');
+    })
+    .then(({ token }) => tokenService.setToken(token));
 }
 
 export default {
-  signup, 
+  signup,
   getUser,
   logout,
   login

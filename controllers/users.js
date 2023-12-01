@@ -71,9 +71,9 @@ async function profile(req, res) {
   try {
     const user = await User.findOne({ username: req.params.username });
     if (!user) return res.status(404).json({ error: 'User not found' });
-    const plants = await Plant.find({user: user._id}).populate('user').exec();
+    const plants = await Plant.find({ user: user._id }).populate('user').exec();
 
-    res.status(200).json({data: plants, user: user})
+    res.status(200).json({ data: plants, user: user })
   } catch (error) {
     return res.status(400).json(error); // Question: What is difference between 400 and 401 errors?
 

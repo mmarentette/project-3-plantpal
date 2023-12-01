@@ -1,43 +1,43 @@
 import { useState, useEffect } from 'react';
+import { Grid } from 'semantic-ui-react';
+
+import tokenService from '../../utils/tokenService';
 
 import PageHeader from '../../components/Header/Header';
 import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
 import PlantFeed from '../../components/PlantFeed/PlantFeed';
 
-import tokenService from '../../utils/tokenService';
-
-import { Grid } from 'semantic-ui-react';
-
 export default function FeedPage() {
+    
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
-        async function getPlants() {
-            try {
-                setLoading(true);
-                const response = await fetch('/api/plants', {
-                    method: 'GET',
-                    headers: {
-                        Authorization: "Bearer " + tokenService.getToken()
-                    }
-                })
-
-                if(!response.ok) setErrorMessage('Could not retrieve plants');
-                const data = await response.json();
-                console.log(data, '<--- data from index fetch');
-
-                setLoading(false);
-                setPlants(data.plants);
-            } catch (error) {
-                console.log(error);
-                setErrorMessage('Could not retrieve plants');
-            }
-        }
-
         getPlants();
     }, [])
+
+    async function getPlants() {
+        try {
+            setLoading(true);
+            const response = await fetch('/api/plants', {
+                method: 'GET',
+                headers: {
+                    Authorization: "Bearer " + tokenService.getToken()
+                }
+            })
+
+            if (!response.ok) setErrorMessage('Could not retrieve plants');
+            const data = await response.json();
+            console.log(data, '<--- data from index fetch');
+
+            setLoading(false);
+            setPlants(data.plants);
+        } catch (error) {
+            console.log(error);
+            setErrorMessage('Could not retrieve plants');
+        }
+    }
 
     async function addPlant(formData) {
         try {
@@ -50,7 +50,7 @@ export default function FeedPage() {
                 body: formData,
             })
 
-            if(!response.ok) setErrorMessage('Could not add plant');
+            if (!response.ok) setErrorMessage('Could not add plant');
             const data = await response.json();
             console.log(data, "<- response data from the server")
 
