@@ -13,7 +13,7 @@ export default function PlantCard({ plant, isProfile, deletePlant }) {
 
     return (
         <Card>
-            {isOwner && <Link to="" onClick={handleClick}>
+            {isOwner && isProfile && <Link to="" onClick={handleClick}>
                 <Card.Content>
                     <Button floated="right">
                         <Icon name="delete" size="small" color="grey" />
