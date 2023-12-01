@@ -4,6 +4,7 @@ import { Grid, Segment, Image } from 'semantic-ui-react';
 
 import tokenService from '../../utils/tokenService';
 
+import LoadingNotice from '../../components/Loader/Loader';
 import PageHeader from '../../components/Header/Header';
 
 export default function PlantShowPage() {
@@ -52,7 +53,7 @@ export default function PlantShowPage() {
         return (
             <>
                 <PageHeader />
-                <h1>Loading...</h1>
+                <LoadingNotice />
             </>
         )
     }
@@ -66,19 +67,19 @@ export default function PlantShowPage() {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column style={{ width: 450 }}>
-                    <Grid.Row><Image
-                        size="large"
-                        src={plant.photoUrl ? plant.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"}
-                    />
+                    <Grid.Row>
+                        <Image
+                            size="large"
+                            src={plant.photoUrl ? plant.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"}
+                        />
                     </Grid.Row>
                     <Segment>
                         <Grid.Row>
                             <h2>{plant.commonName}</h2>
                         </Grid.Row>
                     </Segment>
-
                 </Grid.Column>
-                <Grid.Column style={{ width: 450 }}>
+                <Grid.Column stretched style={{ width: 450 }}>
                     <Segment as="h3">
                         Additional plant details will go here:
                     </Segment>

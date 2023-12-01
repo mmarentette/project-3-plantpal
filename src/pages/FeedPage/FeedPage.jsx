@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Icon } from 'semantic-ui-react';
 
 import tokenService from '../../utils/tokenService';
 
+import LoadingNotice from '../../components/Loader/Loader';
 import PageHeader from '../../components/Header/Header';
 import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
 import PlantFeed from '../../components/PlantFeed/PlantFeed';
@@ -80,7 +81,7 @@ export default function FeedPage() {
         return (
             <>
                 <PageHeader />
-                <h1>Loading...</h1>
+                <LoadingNotice />
             </>
         )
     }

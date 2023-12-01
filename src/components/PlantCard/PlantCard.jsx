@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Button, Icon, Image, Message } from 'semantic-ui-react';
 
 import { useUserContext } from '../../contexts/UserContext';
 
@@ -15,8 +15,9 @@ export default function PlantCard({ plant, isProfile, deletePlant }) {
         <Card>
             {isOwner && <Link to="" onClick={handleClick}>
                 <Card.Content>
-                    <Icon name="delete" size="small" color="grey" />
-                    Delete
+                    <Button floated="right">
+                        <Icon name="delete" size="small" color="grey" />
+                    </Button>
                 </Card.Content>
             </Link>}
 
@@ -25,12 +26,12 @@ export default function PlantCard({ plant, isProfile, deletePlant }) {
                     <Link to={`/${plant.user.username}`}>
                         <Image
                             size="large"
-                            floated="right"
+                            floated="left"
                             avatar
                             src={plant.user.photoUrl ? plant.user.photoUrl : "https://react.semantic-ui.com/images/wireframe/square-image.png"}
                         />
                     </Link>
-                    <Card.Header floated="left">{plant.user.username}</Card.Header>
+                    <Card.Header>{plant.user.username}</Card.Header>
                 </Card.Content>
             )}
             <Link to={`/plants/${plant._id}`}>
@@ -39,14 +40,10 @@ export default function PlantCard({ plant, isProfile, deletePlant }) {
                 />
             </Link>
             <Link to={`/plants/${plant._id}`}>
-                <Card.Content>
-                    <Card.Description>{plant.commonName}</Card.Description>
-                </Card.Content>
+                <Card.Description>
+                    <Message>{plant.commonName}</Message>
+                </Card.Description>
             </Link>
-            {/* <Card.Content>
-                <Icon name="heart" size="mid" color="red" />
-                {plant.likes.length} likes
-            </Card.Content> */}
         </Card>
     )
 }

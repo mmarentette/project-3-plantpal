@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react';
 
 import tokenService from '../../utils/tokenService';
 
+import LoadingNotice from '../../components/Loader/Loader';
 import PageHeader from "../../components/Header/Header";
 import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PlantFeed from '../../components/PlantFeed/PlantFeed';
@@ -87,7 +88,7 @@ export default function ProfilePage() {
         return (
             <>
                 <PageHeader />
-                <h1>Loading...</h1>
+                <LoadingNotice />
             </>
         )
     }
