@@ -9,7 +9,7 @@ import AddPlantForm from '../../components/AddPlantForm/AddPlantForm';
 import PlantFeed from '../../components/PlantFeed/PlantFeed';
 
 export default function FeedPage() {
-    
+
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
