@@ -1,19 +1,25 @@
 import { Card, Icon, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+import { useUserContext } from '../../contexts/UserContext';
+
 export default function PlantCard({ plant, isProfile, deletePlant }) {
+    const { loggedUser } = useUserContext();
+    const isOwner = loggedUser._id === plant.user._id
+
     function handleClick() {
         deletePlant(plant._id);
     }
 
     return (
         <Card>
-            <Link to="" onClick={handleClick}> 
-            <Card.Content>
-                <Icon name="delete" size="small" color="grey" />
-                Delete
-            </Card.Content>
-            </Link>
+            {isOwner && <Link to="" onClick={handleClick}>
+                <Card.Content>
+                    <Icon name="delete" size="small" color="grey" />
+                    Delete
+                </Card.Content>
+            </Link>}
+
             {isProfile ? null : (
                 <Card.Content textAlign="left">
                     <Link to={`/${plant.user.username}`}>
@@ -33,9 +39,9 @@ export default function PlantCard({ plant, isProfile, deletePlant }) {
                 />
             </Link>
             <Link to={`/plants/${plant._id}`}>
-            <Card.Content>
-                <Card.Description>{plant.commonName}</Card.Description>
-            </Card.Content>
+                <Card.Content>
+                    <Card.Description>{plant.commonName}</Card.Description>
+                </Card.Content>
             </Link>
             {/* <Card.Content>
                 <Icon name="heart" size="mid" color="red" />

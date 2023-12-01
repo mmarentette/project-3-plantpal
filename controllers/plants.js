@@ -51,7 +51,7 @@ function create(req, res) {
 
 async function index(req, res) {
     try {
-        const plants = await Plant.find({}).populate("user").exec();
+        const plants = await Plant.find({}).populate("user").sort({'createdAt': 'desc'});
         res.status(200).json({plants});
     } catch (error) {
         console.log(error, '<--- Error reading all plants (controller)');
