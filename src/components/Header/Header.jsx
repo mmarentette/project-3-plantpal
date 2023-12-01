@@ -20,8 +20,7 @@ export default function PageHeader() {
                     active={activeItem === 'home'}
                     onClick={handleItemClick}
                 >
-                    {/* <Icon name='home' /> */}
-                    <Image src="https://i.imgur.com/CPGiTkJ.jpg" size="tiny" />
+                    <Image src="https://i.imgur.com/oRhZ6QH.png" size="tiny" />
                     PlantPal
                 </Menu.Item>
             </Link>
