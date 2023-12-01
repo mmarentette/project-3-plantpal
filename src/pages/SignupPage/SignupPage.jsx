@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
     Button,
     Form,
@@ -69,7 +69,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
                     <Segment stacked>
                         <Form.Input
                             name="username"
-                            placeholder="username"
+                            placeholder="Username"
                             value={state.username}
                             onChange={handleChange}
                             required
@@ -77,7 +77,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
                         <Form.Input
                             type="email"
                             name="email"
-                            placeholder="email"
+                            placeholder="Email"
                             value={state.email}
                             onChange={handleChange}
                             required
@@ -85,7 +85,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
                         <Form.Input
                             name="password"
                             type="password"
-                            placeholder="password"
+                            placeholder="Password"
                             value={state.password}
                             onChange={handleChange}
                             required
@@ -93,7 +93,7 @@ export default function SignupPage({ handleSignupOrLogin }) {
                         <Form.Input
                             name="passwordConf"
                             type="password"
-                            placeholder="Confirm Password"
+                            placeholder="Confirm password"
                             value={state.passwordConf}
                             onChange={handleChange}
                             required
@@ -101,14 +101,14 @@ export default function SignupPage({ handleSignupOrLogin }) {
                         <Form.TextArea
                             label="bio"
                             name="bio"
-                            placeholder="Tell us more about your plants..."
+                            placeholder="Tell us more about you and your plant pals!"
                             onChange={handleChange}
                         />
                         <Form.Field>
                             <Form.Input
                                 type="file"
                                 name="photo"
-                                placeholder="upload image"
+                                placeholder="Upload image"
                                 onChange={handleFileInput}
                             />
                         </Form.Field>
@@ -118,6 +118,9 @@ export default function SignupPage({ handleSignupOrLogin }) {
                     </Segment>
                     {error ? <ErrorMessage error={error} /> : null}
                 </Form>
+                <Message>
+                    Already have an account? <Link to="/login"><strong>Log in</strong></Link> instead
+                </Message>
             </Grid.Column>
         </Grid>
     );

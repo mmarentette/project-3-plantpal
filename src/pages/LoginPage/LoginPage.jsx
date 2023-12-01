@@ -55,7 +55,7 @@ export default function LoginPage({ handleSignupOrLogin }) {
             <Form.Input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email"
               value={state.email}
               onChange={handleChange}
               required
@@ -63,7 +63,7 @@ export default function LoginPage({ handleSignupOrLogin }) {
             <Form.Input
               name="password"
               type="password"
-              placeholder="password"
+              placeholder="Password"
               value={state.password}
               onChange={handleChange}
               required
@@ -74,9 +74,9 @@ export default function LoginPage({ handleSignupOrLogin }) {
           </Segment>
           {error ? <ErrorMessage error={error} /> : null}
         </Form>
-        <Segment>
+        <Message>
           Don't have an account? <Link to="/signup"><strong>Sign up</strong></Link> instead
-        </Segment>
+        </Message>
       </Grid.Column>
     </Grid>
   );
