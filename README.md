@@ -1,40 +1,46 @@
+# PLANTPAL
 
-## Setup 
+PlantPal is designed to help your house plant pets thrive. Start keeping track of all your house plants on your profile page by uploading a photo and inputting the common name. Click a plant card to view details and care instructions. Never forget to water your plant pals again!
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv Mern-Vite-Boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls -a` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+# Screenshots
+
+Home page (index of plants):
+<img src="updateLink">
+
+Profile page (index of profile user's plants):
+<img src="updateLink">
+
+Show page for plant details:
+<img src="updateLink">
 
 
-#### Setup your git repo
+# Technologies Used
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2.  Then follow the directions on github that says ```…or create a new repository on the command line```
+### Language
+- JavaScript
 
-it should look like this
+### Database
+- MongoDB
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be
-git push -u origin main
-```
+### Libraries, Frameworks & Tools
+- Express.js
+- Node.js
+- Mongoose
+- Semantic UI React
 
-#### Setup the App
 
-```npm install```
+# Getting Started
 
-*DOTENV*
+[Click here to visit PlantPal](insert URL here)
 
-`touch .env`
+[Check out my Trello planning board](https://trello.com/invite/b/VWgjEyB9/ATTI22e8957631fb3c93d94a05053d99877e695B5C2F/sei-925-project-3-plantpal)
 
-add your variables
 
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
+# Next Steps
 
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+- Populate plant details (scientific name, description, sunlight, watering benchmark, cycle, pruning details, etc.) from plant API
+- Allow users to 'like' and 'unlike' plants on PlantFeed and ProfilePage
+- Integrate API to allow users to upload a photo of their plant in order to identify the plant and display care details
+- Allow users to search for specific plants by commonName on the FeedPage
+- Allow users to log when they watered their plants on each plant's show page; this component will be unique to each logged-in user
+- Alert users (via email or SMS) when they should water their plant
