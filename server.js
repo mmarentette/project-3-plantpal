@@ -9,6 +9,7 @@ require("./config/database");
 // Require controllers here
 
 const app = express();
+app.set('view engine', 'ejs');
 
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
@@ -23,9 +24,22 @@ app.use(require("./config/auth"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/plants", require("./routes/api/plants"));
 
-// "catch all" route
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+if(process.env.IS_PRODUCTION){
+
+  const manifest = require('./dist/manifest.json');
+  
+  app.use(express.static(path.join(__dirname, "dist")));
+
+  // "catch all" route the file that runs on aws (production)
+  app.get('/*', function(req, res) {
+    res.render(path.join(__dirname, 'dist', 'index.ejs'), {manifest});
+  });
+
+
+}
+// "catch all" route the html file that runs locally 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, './','index.html'));
 });
 
 const port = process.env.PORT || 3001;
